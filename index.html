@@ -100,8 +100,34 @@
             box-shadow: none;
         }
 
+        /* Group Avatar Selection */
+        .group-icon-grid {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        .group-icon-card {
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            padding: 10px;
+            cursor: pointer;
+            background: white;
+            transition: 0.2s;
+        }
+        .group-icon-card:hover, .group-icon-card.selected {
+            border-color: var(--secondary-neon);
+            box-shadow: 0 0 10px var(--secondary-neon);
+            background: #e0f7fa;
+        }
+        .group-icon-card img {
+            width: 50px;
+            height: 50px;
+            image-rendering: pixelated;
+        }
+
         /* Char Selection */
-        .char-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; }
+        .char-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 10px; }
         .char-card { border: 2px solid #ccc; border-radius: 8px; padding: 15px; text-align: center; cursor: pointer; background: white; transition: 0.2s; }
         .char-card:hover, .char-card.selected { border-color: var(--secondary-neon); box-shadow: 0 0 10px var(--secondary-neon); background: #e0f7fa; }
         .char-card img { width: 80px; height: 80px; image-rendering: pixelated; }
@@ -134,7 +160,7 @@
             padding: 15px;
             overflow-y: auto;
             border-radius: 8px;
-            display: none; /* ซ่อนไว้ก่อนจนกว่าจะถึงเวลาควิซ */
+            display: none;
         }
         .question-block { background: white; padding: 15px; border-radius: 5px; box-shadow: 1px 1px 3px rgba(0,0,0,0.1); margin-bottom: 15px;}
         .option-label { display: block; margin: 8px 0; padding: 10px; background: #f0f0f0; border-radius: 4px; cursor: pointer; border: 1px solid transparent;}
@@ -142,7 +168,7 @@
         .option-label input:checked + span { font-weight: bold; color: var(--primary-neon); }
 
         /* HUD */
-        .hud { display: flex; justify-content: space-between; background: var(--bg-color); color: var(--secondary-neon); padding: 10px; border-radius: 5px; margin-bottom: 15px; font-weight: bold; }
+        .hud { display: flex; justify-content: space-between; background: var(--bg-color); color: var(--secondary-neon); padding: 10px; border-radius: 5px; margin-bottom: 15px; font-weight: bold; align-items: center;}
         .timer-red { color: #ff4d4d; animation: pulse 1s infinite; }
         @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.5; } 100% { opacity: 1; } }
 
@@ -164,12 +190,28 @@
             <label>Your Name:</label>
             <input type="text" id="inp-name" placeholder="Your real name">
             
+            <label>Select Group Avatar:</label>
+            <div class="group-icon-grid">
+                <div class="group-icon-card" onclick="selectGroupIcon('Icon1', this)">
+                    <img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/Error_Icon%20(1).png?raw=true" alt="Error Icon">
+                </div>
+                <div class="group-icon-card" onclick="selectGroupIcon('Icon2', this)">
+                    <img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/Save_Icon%20(1).png?raw=true" alt="Save Icon">
+                </div>
+                <div class="group-icon-card" onclick="selectGroupIcon('Icon3', this)">
+                    <img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/Camera.png?raw=true" alt="Camera Icon">
+                </div>
+                <div class="group-icon-card" onclick="selectGroupIcon('Icon4', this)">
+                    <img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/Disk.png?raw=true" alt="Disk Icon">
+                </div>
+            </div>
+
             <h3>Select Your Suspect File:</h3>
             <div class="char-grid">
-                <div class="char-card" onclick="selectChar('JAMIE')"><img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/JAMIE.png?raw=true" alt="Jamie"><p><b>JAMIE</b><br>(Best Friend)</p></div>
-                <div class="char-card" onclick="selectChar('TAYLOR')"><img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/TAYLOR.png?raw=true" alt="Taylor"><p><b>TAYLOR</b><br>(Ex-partner)</p></div>
-                <div class="char-card" onclick="selectChar('CHRIS')"><img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/CHRIST.png?raw=true" alt="Chris"><p><b>CHRIS</b><br>(Coworker)</p></div>
-                <div class="char-card" onclick="selectChar('MORGAN')"><img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/MORGAN.png?raw=true" alt="Morgan"><p><b>MORGAN</b><br>(Neighbor)</p></div>
+                <div class="char-card" onclick="selectChar('JAMIE', this)"><img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/JAMIE.png?raw=true" alt="Jamie"><p><b>JAMIE</b><br>(Best Friend)</p></div>
+                <div class="char-card" onclick="selectChar('TAYLOR', this)"><img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/TAYLOR.png?raw=true" alt="Taylor"><p><b>TAYLOR</b><br>(Ex-partner)</p></div>
+                <div class="char-card" onclick="selectChar('CHRIS', this)"><img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/CHRIST.png?raw=true" alt="Chris"><p><b>CHRIS</b><br>(Coworker)</p></div>
+                <div class="char-card" onclick="selectChar('MORGAN', this)"><img src="https://github.com/b6402100v2-ux/Pixelrepo/blob/main/MORGAN.png?raw=true" alt="Morgan"><p><b>MORGAN</b><br>(Neighbor)</p></div>
             </div>
             <div style="text-align: center; margin-top: 20px;">
                 <button onclick="startGame()">START INVESTIGATION</button>
@@ -180,7 +222,17 @@
     <div id="win-intro" class="window">
         <div class="title-bar"><span>📝 MISSION_BRIEFING.TXT</span></div>
         <div class="content" style="font-size: 1.1rem; line-height: 1.6;">
-            <p>You are about to become a detective...</p>
+            <p>You are about to become a detective.</p>
+            <p>A young person named Alex was found dead last night. There were no clear signs of what happened. However, the police found something important — <b>Alex’s last chat messages.</b></p>
+            <p>There are four suspects. Each of them had a conversation with Alex before the incident. Each conversation may contain small clues, hidden meanings, or important details.</p>
+            <p>You will work in a team of four. Each of you will receive a different chat. You must read carefully, understand the situation, and share your information with your teammates.</p>
+            <p>Be careful. Not everything is clear. Some people may seem honest, but they are hiding something. Others may look suspicious, but they are not guilty.</p>
+            <p>Your mission is to:<br>
+            • understand your chat<br>
+            • find important clues<br>
+            • work together<br>
+            • and decide… <b>who killed Alex</b></p>
+            <p><i>Remember: The answer is not always obvious. Good luck, detective.</i></p>
             <button onclick="startChatSimulation()" style="width: 100%;">PROCEED TO EVIDENCE FILES</button>
         </div>
     </div>
@@ -189,9 +241,12 @@
         <div class="title-bar"><span>🔍 EVIDENCE_ANALYSIS.EXE</span><span id="timer-display">--:--</span></div>
         <div class="content">
             <div class="hud">
-                <span id="hud-player">Agent: ???</span>
-                <span id="hud-target">Target: ???</span>
+                <div>
+                    <span id="hud-player" style="display: block;">Agent: ???</span>
+                    <span id="hud-target" style="display: block;">Target: ???</span>
+                </div>
                 <span id="hud-status">Status: Recovering Chat Log...</span>
+                <button id="btn-skip-read" onclick="skipReading()" style="display: none; padding: 5px 10px;">SKIP TO QUESTIONS ➡️</button>
             </div>
             <div class="layout-split">
                 
@@ -238,6 +293,13 @@
         <div class="title-bar"><span>⚖️ FINAL_VERDICT.EXE</span><span id="vote-timer">10:00</span></div>
         <div class="content">
             <h2 style="text-align: center;">WHO KILLED ALEX?</h2>
+            <p style="text-align: center;" id="vote-round-text">Round 1: Discuss with your team and vote.</p>
+            
+            <div id="review-section" style="display: none; background: #fff; padding: 10px; margin-bottom: 15px; border: 1px solid #ccc; height: 150px; overflow-y: auto;">
+                <i>* All Chats Unlocked for Review *</i>
+                <div id="all-chats-content" style="font-family: monospace; font-size: 0.9em;"></div>
+            </div>
+
             <div class="char-grid">
                 <div class="char-card" onclick="castVote('JAMIE')"><p>JAMIE</p></div>
                 <div class="char-card" onclick="castVote('TAYLOR')"><p>TAYLOR</p></div>
@@ -254,17 +316,20 @@
 
     <script>
         // === Configuration ===
+        // ลิงก์ GAS ของคุณ
         const GAS_URL = "https://script.google.com/macros/s/AKfycbzqYTC77PaiWt8TvBC2LlMQHJg1f_6G_y014v5Wx-1DVN06kgzRBsMlnba_78m1_BU7/exec"; 
 
         // === Game State ===
-        const playerData = { group: "", name: "", char: "", bonus: 0 };
+        const playerData = { group: "", name: "", char: "", groupIcon: "", bonus: 0 };
         let timerInterval;
         let chatInterval;
         let unblurTokens = 2;
         let currentQIndex = 0;
         let userAnswers = [];
+        let voteRound = 1;
+        let pollInterval;
         
-        // === Data Structure อัปเดตใหม่ (แยก Chat เป็น array, เพิ่มเฉลย exp) ===
+        // === Full Data Structure (Jamie, Taylor, Chris, Morgan) ===
         const chatData = {
             "JAMIE": {
                 lines: [
@@ -289,7 +354,47 @@
                     { q: "5. What makes Jamie slightly suspicious?", opts: ["Asking about work", "Ignoring Alex", "Asking about other people knowing", "Being too emotional"], ans: 2, exp: "การถามย้ำว่า 'You’re not telling anyone else about this, right?' ดูมีพิรุธเหมือนไม่อยากให้เรื่องแดงขึ้นมา" }
                 ]
             },
-            // ... (ใส่ Data ของ TAYLOR, CHRIS, MORGAN ในรูปแบบเดียวกัน) ...
+            "TAYLOR": {
+                lines: [
+                    { s: "Alex", m: "We should clear things up before this gets worse." },
+                    { s: "Taylor", m: "I didn’t think it was that serious." },
+                    { s: "Alex", m: "It is for me. You weren’t completely honest." },
+                    { s: "Taylor", m: "That depends on how you see it." },
+                    { s: "Alex", m: "That’s not a real answer." },
+                    { s: "Taylor", m: "Maybe you’re focusing on the wrong detail." },
+                    { s: "Alex", m: "Then tell me what I’m missing." },
+                    { s: "Taylor", m: "Not here. It’s too easy to misunderstand in messages." },
+                    { s: "Alex", m: "So when?" },
+                    { s: "Taylor", m: "Later tonight, if you still want to." }
+                ],
+                qs: [
+                    { q: "1. What is the main issue?", opts: ["A trip", "A misunderstanding or unclear truth", "A job problem", "A family issue"], ans: 1, exp: "Alex พูดถึงการที่ Taylor ไม่พูดความจริงทั้งหมด (weren't completely honest)" },
+                    { q: "2. How does Taylor respond?", opts: ["Clearly explains", "Gets angry", "Avoids a direct answer", "Ends the conversation"], ans: 2, exp: "Taylor ตอบบ่ายเบี่ยงว่า 'That depends on how you see it' และไม่ให้คำตอบที่ชัดเจน" },
+                    { q: "3. What does Taylor suggest?", opts: ["Talking later in person", "Calling immediately", "Ignoring the problem", "Asking someone else"], ans: 0, exp: "Taylor เสนอให้คุยกันคืนนี้ ('Later tonight') แทนการพิมพ์แชท" },
+                    { q: "4. Why might Taylor avoid explaining?", opts: ["Has nothing to say", "Is busy", "Wants to hide the truth", "Thinks chat may cause confusion"], ans: 3, exp: "Taylor ให้เหตุผลว่า 'It’s too easy to misunderstand in messages' (กลัวเข้าใจผิดถ้าคุยผ่านข้อความ)" },
+                    { q: "5. What is Taylor’s attitude?", opts: ["Aggressive", "Careless", "Completely honest", "Calm but unclear"], ans: 3, exp: "Taylor ตอบกลับด้วยท่าทีใจเย็น แต่ก็คลุมเครือไม่ยอมบอกความจริงตรงๆ" }
+                ]
+            },
+            "CHRIS": {
+                lines: [
+                    { s: "Chris", m: "Are you going to finish the report today?" },
+                    { s: "Alex", m: "I’ll try. Something came up." },
+                    { s: "Chris", m: "That’s been happening a lot lately." },
+                    { s: "Alex", m: "I know. I’m dealing with it tonight." },
+                    { s: "Chris", m: "You said that yesterday too." },
+                    { s: "Alex", m: "This time it’s different." },
+                    { s: "Chris", m: "It better be. The manager is already asking questions." },
+                    { s: "Alex", m: "I won’t let it affect the team again." },
+                    { s: "Chris", m: "I hope so. We’re all depending on this." }
+                ],
+                qs: [
+                    { q: "1. What is the main topic?", opts: ["Family Issues", "Health Care", "Work responsibilities", "Travel insurance"], ans: 2, exp: "บทสนทนาพูดถึงเรื่องรายงาน (report) และการทำงานของทีม" },
+                    { q: "2. What change is seen in Alex?", opts: ["More relaxed", "More productive", "More social", "Less reliable recently"], ans: 3, exp: "Chris บ่นว่าพักหลัง Alex มีธุระบ่อย (That's been happening a lot lately) ทำให้ดูพึ่งพาได้น้อยลง" },
+                    { q: "3. Why is Chris frustrated?", opts: ["Alex affects the team’s work", "Alex is rude", "Alex is sick", "Alex is late for a party"], ans: 0, exp: "Chris กังวลเพราะงานของ Alex กระทบกับคนในทีม ('We're all depending on this')" },
+                    { q: "4. What pressure is mentioned?", opts: ["Family problem", "Financial crisis", "Social issue", "Team pressure"], ans: 3, exp: "มีแรงกดดันจากทั้งทีมและผู้จัดการที่เริ่มถามถึงงาน (The manager is already asking questions)" },
+                    { q: "5. What could be Chris’s motive?", opts: ["Strong personal conflict", "Work-related frustration", "Jealousy", "No connection"], ans: 1, exp: "แรงจูงใจเดียวที่เห็นจากแชทคือความหงุดหงิดเรื่องงาน (Work-related frustration) ไม่มีประเด็นส่วนตัว" }
+                ]
+            },
             "MORGAN": {
                 lines: [
                     { s: "Morgan", m: "Hey, I hope I’m not bothering you." },
@@ -312,7 +417,6 @@
                 ]
             }
         };
-        // (*** หมายเหตุ: กรุณาเติม Data ของ Taylor และ Chris ให้ครบตามโครงสร้างข้างต้นด้วยนะครับ ***)
 
         // === Navigation Functions ===
         function showWindow(id) {
@@ -320,17 +424,34 @@
             document.getElementById(id).classList.add('active-window');
         }
 
-        function selectChar(charName) {
+        function selectGroupIcon(iconName, elem) {
+            document.querySelectorAll('.group-icon-card').forEach(c => c.classList.remove('selected'));
+            elem.classList.add('selected');
+            playerData.groupIcon = iconName;
+        }
+
+        function selectChar(charName, elem) {
             document.querySelectorAll('.char-card').forEach(c => c.classList.remove('selected'));
-            event.currentTarget.classList.add('selected');
+            elem.classList.add('selected');
             playerData.char = charName;
         }
 
         function startGame() {
             playerData.group = document.getElementById('inp-group').value.trim();
             playerData.name = document.getElementById('inp-name').value.trim();
-            if (!playerData.group || !playerData.name || !playerData.char) { alert("Please fill all details!"); return; }
-            if(GAS_URL !== "https://script.google.com/macros/s/AKfycbzqYTC77PaiWt8TvBC2LlMQHJg1f_6G_y014v5Wx-1DVN06kgzRBsMlnba_78m1_BU7/exec") { fetch(GAS_URL, { method: 'POST', body: JSON.stringify({action: 'join', ...playerData}) }); }
+            
+            if (!playerData.group || !playerData.name || !playerData.char || !playerData.groupIcon) { 
+                alert("Please fill all details, select a Group Avatar, and choose a suspect!"); 
+                return; 
+            }
+            
+            // ส่งข้อมูลไปที่ Google Sheets (ผ่าน doPost ของ GAS)
+            fetch(GAS_URL, { 
+                method: 'POST', 
+                mode: 'no-cors', // ใช้ no-cors ป้องกันปัญหา CORS policy เวลายิงจากเว็บตรงๆ
+                body: JSON.stringify({action: 'join', ...playerData}) 
+            });
+            
             showWindow('win-intro');
         }
 
@@ -356,14 +477,16 @@
                     lineIdx++;
                 } else {
                     clearInterval(chatInterval);
-                    startReadingTimer(); // เด้งครบแล้ว เริ่มจับเวลาอ่าน 2 นาที
+                    startReadingTimer(); // เด้งครบแล้ว เริ่มจับเวลาอ่าน 1 นาที
                 }
-            }, 1200); // ดีเลย์ 1.2 วินาทีต่อข้อความ
+            }, 1200);
         }
 
         function startReadingTimer() {
-            document.getElementById('hud-status').innerText = "Status: Reading File (2 Mins)";
-            let timeLeft = 120; // 2 mins
+            document.getElementById('hud-status').innerText = "Status: Reading File (1 Min)";
+            document.getElementById('btn-skip-read').style.display = "inline-block"; // โชว์ปุ่ม Skip
+            
+            let timeLeft = 60; // ปรับลดเวลาเป็น 1 นาที (60 วินาที)
             
             timerInterval = setInterval(() => {
                 timeLeft--;
@@ -378,15 +501,20 @@
             }, 1000);
         }
 
+        function skipReading() {
+            clearInterval(timerInterval);
+            startQuizPhase(); // ข้ามเวลาไปเริ่มควิซเลย
+        }
+
         // === Phase 2: Quiz Phase ===
         function startQuizPhase() {
-            // เบลอแชท & โชว์ปุ่มปลดล็อก
+            document.getElementById('btn-skip-read').style.display = "none";
             document.getElementById('chat-content').classList.add('blurred');
             document.getElementById('btn-unblur').style.display = 'block';
             document.getElementById('quiz-content').style.display = 'block';
             document.getElementById('hud-status').innerText = "Status: Interrogation (10 Mins)";
             
-            renderQuestion(); // เริ่มแสดงคำถามข้อ 1
+            renderQuestion(); 
 
             // จับเวลา 10 นาที (ทำควิซ)
             let quizTime = 600; 
@@ -397,25 +525,23 @@
                 let tDisplay = document.getElementById('timer-display');
                 tDisplay.innerText = `TIME: ${m}:${s < 10 ? '0' : ''}${s}`;
                 
-                if (quizTime <= 60) tDisplay.classList.add('timer-red'); // เตือน 1 นาทีสุดท้าย
+                if (quizTime <= 60) tDisplay.classList.add('timer-red'); 
 
                 if (quizTime <= 0) {
                     clearInterval(timerInterval);
                     alert("⚠️ TIME IS UP! You failed to analyze in time.");
                     playerData.bonus = 0;
-                    goToWaitingRoom(false); // หมดเวลา ส่งไปรอโหวตแบบไม่ได้โบนัส
+                    goToWaitingRoom(false); 
                 }
             }, 1000);
         }
 
-        // ฟังก์ชันปลดล็อกแชท (ใช้ได้ 2 ครั้ง)
         function useUnblurToken() {
             if(unblurTokens > 0) {
                 unblurTokens--;
                 document.getElementById('btn-unblur').innerText = `👁️ READ CHAT (${unblurTokens} LEFT)`;
                 document.getElementById('chat-content').classList.remove('blurred');
                 
-                // ให้เวลาอ่าน 10 วินาทีแล้วเบลอกลับ
                 setTimeout(() => {
                     document.getElementById('chat-content').classList.add('blurred');
                 }, 10000); 
@@ -427,7 +553,6 @@
             }
         }
 
-        // แสดงคำถามทีละข้อ
         function renderQuestion() {
             const qData = chatData[playerData.char].qs[currentQIndex];
             document.getElementById('q-counter').innerText = `Question ${currentQIndex + 1} / 5`;
@@ -456,7 +581,7 @@
                 currentQIndex++;
                 renderQuestion();
             } else {
-                checkAllAnswers(); // ทำครบ 5 ข้อแล้ว เช็คคำตอบ
+                checkAllAnswers();
             }
         }
 
@@ -472,16 +597,14 @@
             }
 
             if (allCorrect) {
-                // ตอบถูก 5 ข้อรวด!
                 clearInterval(timerInterval);
                 playerData.bonus = 3;
                 showExplanations(qs);
             } else {
-                // ผิดแม้แต่ข้อเดียว
                 alert("❌ Analysis Failed! Some answers are incorrect. You must review and start over.");
                 currentQIndex = 0;
                 userAnswers = [];
-                renderQuestion(); // วนกลับไปข้อ 1 ใหม่
+                renderQuestion(); 
             }
         }
 
@@ -502,45 +625,129 @@
             document.getElementById('wait-groupname').innerText = playerData.group;
             document.getElementById('bonus-status').innerHTML = success ? "🔍 +3 Bonus Points Earned!" : "No Bonus Earned.";
 
-            if(GAS_URL !== "https://script.google.com/macros/s/AKfycbzqYTC77PaiWt8TvBC2LlMQHJg1f_6G_y014v5Wx-1DVN06kgzRBsMlnba_78m1_BU7/exec") {
-                fetch(GAS_URL, { method: 'POST', body: JSON.stringify({action: 'updateScore', groupName: playerData.group, playerName: playerData.name, quizScore: success?5:0, bonusPoints: playerData.bonus}) });
-            }
+            // ส่งข้อมูลคะแนนและอัปเดตสถานะ (Waiting) ไปที่ GAS
+            fetch(GAS_URL, { 
+                method: 'POST', 
+                mode: 'no-cors',
+                body: JSON.stringify({action: 'updateScore', groupName: playerData.group, playerName: playerData.name, quizScore: success?5:0, bonusPoints: playerData.bonus}) 
+            });
 
-            // ระบบ Polling เช็คว่าเพื่อนทั้ง 4 คนมาถึงหน้านี้หรือยัง
+            // ดึงข้อมูลผ่าน GET Method เพื่อเช็คสถานะทีม
             pollInterval = setInterval(checkGroupStatus, 3000);
         }
 
         function checkGroupStatus() {
-            if(GAS_URL === "https://script.google.com/macros/s/AKfycbzqYTC77PaiWt8TvBC2LlMQHJg1f_6G_y014v5Wx-1DVN06kgzRBsMlnba_78m1_BU7/exec") {
-                // Mock behavior ถ้าไม่ได้ต่อ GAS
-                document.getElementById('waiting-members').innerHTML = `<div class="waiting-card"><p>${playerData.name}</p><span class="status-badge">READY</span></div>`;
-                setTimeout(() => { alert("ทุกคนพร้อมแล้ว! เข้าสู่ช่วงโหวตคนร้าย"); startVotingPhase(); clearInterval(pollInterval); }, 4000);
-                return;
-            }
-
             fetch(GAS_URL + `?action=checkStatus&groupName=${playerData.group}`)
                 .then(res => res.json())
                 .then(data => {
                     let html = "";
                     data.members.forEach(m => {
-                        html += `<div class="waiting-card"><p>${m.name} (${m.avatar})</p><span class="status-badge">${m.status.toUpperCase()}</span></div>`;
+                        let badgeColor = (m.status === "Waiting" || m.status === "Voted") ? "#10b981" : "#f59e0b";
+                        html += `<div class="waiting-card">
+                                    <p>${m.name} (${m.avatar})</p>
+                                    <span class="status-badge" style="background:${badgeColor}">${m.status.toUpperCase()}</span>
+                                 </div>`;
                     });
                     document.getElementById('waiting-members').innerHTML = html;
                     
+                    // เงื่อนไข: ถ้าคนครบ 4 คน และทั้งหมดอยู่ในสถานะพร้อม (allReady = true) ถึงจะเข้าหน้าโหวตได้
                     if(data.allReady) {
                         clearInterval(pollInterval);
-                        alert("สมาชิกครบ 4 คนแล้ว! เข้าสู่ระบบโหวตส่วนที่ 2");
+                        alert("สมาชิกครบและผ่านเงื่อนไขทุกคนแล้ว! เข้าสู่ระบบโหวตส่วนที่ 2");
                         startVotingPhase();
                     }
-                });
+                })
+                .catch(err => console.error("Error fetching status:", err));
         }
 
-        // ฟังก์ชันช่วง Vote โค้ดเดิม (ยกมาต่อยอดได้เลย)
+        // === Phase 4: Voting ===
         function startVotingPhase() {
             showWindow('win-vote');
-            // ... Logic ส่วนโหวต ...
+            timeLeft = (voteRound === 1) ? 600 : 600; // 10 mins
+            if(voteRound === 2) {
+                document.getElementById('vote-round-text').innerText = "Round 2: Final Vote (Silver Coin Reward)";
+            }
+            
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('vote-timer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) clearInterval(timerInterval);
+            }, 1000);
         }
-        function castVote(suspect) { /* ... Logic โหวต ... */ }
+
+        function castVote(suspect) {
+            clearInterval(timerInterval);
+            if (suspect === 'MORGAN') {
+                showFeedback(suspect, true);
+            } else {
+                if (voteRound === 1) {
+                    alert("Incorrect! You have 3 minutes to review all chats before Round 2.");
+                    voteRound = 2;
+                    startReviewPhase();
+                } else {
+                    showFeedback(suspect, false);
+                }
+            }
+        }
+
+        function startReviewPhase() {
+            document.getElementById('review-section').style.display = 'block';
+            let allChats = "";
+            for(let key in chatData) {
+                // แปลง Array กลับมาเป็นข้อความแชทเพื่อให้อ่านทวน
+                let logText = chatData[key].lines.map(l => `${l.s}: ${l.m}`).join("<br>");
+                allChats += `<p><b>${key}</b><br>${logText}</p><hr>`;
+            }
+            document.getElementById('all-chats-content').innerHTML = allChats;
+            
+            timeLeft = 180; // 3 mins review
+            timerInterval = setInterval(() => {
+                timeLeft--;
+                let m = Math.floor(timeLeft / 60);
+                let s = timeLeft % 60;
+                document.getElementById('vote-timer').innerText = `REVIEW TIME - ${m}:${s < 10 ? '0' : ''}${s}`;
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                    alert("Review time over. Please vote again.");
+                    startVotingPhase();
+                }
+            }, 1000);
+        }
+
+        function showFeedback(suspect, isCorrect) {
+            showWindow('win-feedback');
+            let fbHTML = "";
+            if (isCorrect) {
+                fbHTML = `<h2 style="color: #10b981;">🟩 CORRECT: MORGAN IS THE KILLER</h2>
+                          <p><b>✅ Why this is correct:</b><br>
+                          • Morgan collects personal information (routine, timing)<br>
+                          • Morgan shows unusual interest without clear reason<br>
+                          • Morgan asks about when Alex will be out → possible planning</p>
+                          <p><b>🧠 Strong reasoning:</b><br>👉 You used multiple clues from the chat, not just one sentence</p>
+                          <br><b>Feedback:</b> Good job! You used multiple clues.`;
+            } else {
+                if(suspect === 'JAMIE') {
+                    fbHTML = `<h2 style="color: #ef4444;">🟥 INCORRECT: JAMIE</h2>
+                              <p><b>❌ What went wrong:</b><br>You focused too much on one suspicious question. But you didn’t find strong evidence of harmful action.</p>
+                              <p><b>💡 Better thinking:</b><br>Asking questions ≠ being guilty. You need clear intention or plan.</p>
+                              <br><b>Feedback:</b> You focused on tone, not action.`;
+                } else if(suspect === 'TAYLOR') {
+                    fbHTML = `<h2 style="color: #ef4444;">🟥 INCORRECT: TAYLOR</h2>
+                              <p><b>❌ What went wrong:</b><br>You may have been influenced by relationship bias (ex-partner stereotype). You focused on unclear answers, but not real danger signals.</p>
+                              <p><b>💡 Better thinking:</b><br>Look for what the person DOES, not just how they speak.</p>
+                              <br><b>Feedback:</b> You followed a stereotype, not evidence.`;
+                } else if(suspect === 'CHRIS') {
+                    fbHTML = `<h2 style="color: #ef4444;">🟥 INCORRECT: CHRIS</h2>
+                              <p><b>❌ What went wrong:</b><br>You focused on frustration at work as a motive. But you ignored the fact that there is no personal or emotional conflict.</p>
+                              <p><b>💡 Better thinking:</b><br>Chris has weak motive and no clear opportunity.</p>
+                              <br><b>Feedback:</b> Your motive is too weak.`;
+                }
+            }
+            document.getElementById('feedback-content').innerHTML = fbHTML;
+        }
     </script>
 </body>
 </html>
